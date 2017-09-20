@@ -8,22 +8,25 @@ export default class List extends Component {
     const { items } = this.props
 
     return items.map( (item) => {
-      console.log(item.users)
       return (
         <Item
+          onClickChannelName = {this.props.onClickChannelName}
           key={ item.id }
-          name={ item.username || item.name }/>
+          name={ item.username || item.name } />
       )
     })
   }
 
+  toggleMessages() {
+
+  }
+
   render() {
     const { type, items, onClickCreateChannel } = this.props
-
     return (
       <div>
         { type }
-        { onClickCreateChannel === undefined ? "" :  
+        { onClickCreateChannel === undefined ? "" :
           <button onClick={ () => { onClickCreateChannel() } } >
             Create
           </button>

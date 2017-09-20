@@ -4,7 +4,7 @@ import List from "../components/Sidebar/List"
 import Message from "../components/Message/Message"
 import MessageInput from "../components/Message/MessageInput"
 import ChannelForm from "../components/Forms/ChannelForm"
- 
+
 import UsersAPI from "../services/UsersAPI"
 import ChannelsAPI from "../services/ChannelsAPI"
 
@@ -50,6 +50,16 @@ export default class ChatContainer extends Component {
     }
   }
 
+  toggleMessages(value, ref1,ref2) {
+    console.log(value)
+    console.log(ref1)
+    console.log(ref2)
+  }
+
+  test(){
+    alert('okay')
+  }
+
   render() {
     const { users, channels } = this.state
     const publicChannels = channels.filter( (member) => { return member.type === "PublicChannel" } )
@@ -60,7 +70,7 @@ export default class ChatContainer extends Component {
 
     return (
       <div>
-        <div 
+        <div
           ref={ (el) => { formRef = el } }
           role="channel-form"
           hidden>
@@ -69,21 +79,22 @@ export default class ChatContainer extends Component {
             onCreateChannel={ (value) => { this.createChannel(value, formRef, contentRef) } }
             onCancelCreateChannel={ () => { this.toggleChannelForm(formRef, contentRef) } }/>
         </div>
-        <div 
+        <div
           ref={ (el) => { contentRef = el } }
           role="main-content">
           <aside>
-            <List 
+            <List
+              onClickChannelName = { this.test }
               onClickCreateChannel={ () => { this.toggleChannelForm(formRef, contentRef) } }
               icon={ "hashtags" }
               type={ "Public Channels" }
               items={ publicChannels }/>
-            <List 
+            <List
               onClickCreateChannel={ () => { this.toggleChannelForm(formRef, contentRef) } }
               icon={ "lock" }
               type={ "Private Channels" }
               items={ privateChannels }/>
-            <List 
+            <List
               type={ "Direct Messages" }
               icon={ "circle" }
               items={ users }/>
