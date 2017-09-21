@@ -3,11 +3,13 @@ import PropTypes from "prop-types"
 
 export default class Item extends Component {
   render() {
-    const { onClickChannelName } = this.props
-
     return (
-      <li onClick={onClickChannelName}>
+      <li className="item">
         { this.props.name }
+        <div
+          onClick= { (activeChannel) => this.props.current(this.props.name) }>
+          { this.props.name }
+        </div>
       </li>
     )
   }

@@ -5,20 +5,17 @@ import Item from "./Item";
 
 export default class List extends Component {
   renderUsers() {
-    const { items } = this.props
+    const { items, current } = this.props
 
     return items.map( (item) => {
       return (
         <Item
-          onClickChannelName = {this.props.onClickChannelName}
           key={ item.id }
-          name={ item.username || item.name } />
+          name={ item.username || item.name }
+          current= { current }
+        />
       )
     })
-  }
-
-  toggleMessages() {
-
   }
 
   render() {
